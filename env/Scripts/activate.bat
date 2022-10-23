@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\zelenka\PythonProjects\QuantumChaos\env
+set VIRTUAL_ENV=C:\Users\Stepa\PycharmProjects\QuantumChaos\env
 
 if not defined PROMPT set PROMPT=$P$G
 
