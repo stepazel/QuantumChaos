@@ -21,8 +21,8 @@ if beta not in [1, 2, 4]:
     print("A valid beta has to be selected!")
     exit()
 
-n = 200
-reps = 5000
+n = 2
+reps = 500
 spacings = []
 for r in range(reps):
     matrix = GaussianEnsemble(beta=beta, n=n, use_tridiagonal=True).matrix
@@ -44,4 +44,4 @@ plt.ylabel("Frequency")
 plt.xlim(xmin=0, xmax=5)
 plt.title("Histogram for " + betas[beta][0] + " " + str(n) + "x" + str(n))
 # plt.savefig(betas[beta][0] + str(n))
-plt.show()
+# plt.show()
