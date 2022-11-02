@@ -21,8 +21,8 @@ if beta not in [1, 2, 4]:
     print("A valid beta has to be selected!")
     exit()
 
-n = 2
-reps = 500
+n = 1000
+reps = 1000
 spacings = []
 for r in range(reps):
     matrix = GaussianEnsemble(beta=beta, n=n, use_tridiagonal=True).matrix
@@ -35,6 +35,8 @@ for r in range(reps):
 mean = np.mean(spacings)
 normalized_spacings = list(map(lambda s: s / mean, spacings))
 
+np.save(betas[beta][0] + " " + str(n) + "x" + str(n), normalized_spacings)
+
 plt.hist(normalized_spacings, bins=500, density=True)
 x = np.arange(0, 5, 0.1)
 plt.plot(x, betas[beta][1](x), label=betas[beta][0])
@@ -44,4 +46,4 @@ plt.ylabel("Frequency")
 plt.xlim(xmin=0, xmax=5)
 plt.title("Histogram for " + betas[beta][0] + " " + str(n) + "x" + str(n))
 # plt.savefig(betas[beta][0] + str(n))
-# plt.show()
+plt.show()
