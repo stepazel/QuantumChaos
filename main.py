@@ -21,23 +21,22 @@ if beta not in [1, 2, 4]:
     print("A valid beta has to be selected!")
     exit()
 
-n = 1000
-reps = 1000
+n = 1001
+reps = 10
 spacings = []
 for r in range(reps):
-    matrix = GaussianEnsemble(beta=beta, n=n, use_tridiagonal=True).matrix
+    matrix = GaussianEnsemble(beta=beta, n=n, use_tridiagonal=False).matrix
     sorted_eigen_values = np.sort(np.linalg.eigvalsh(matrix))
-    hmm = [F(eigenvalue, n, 1) for eigenvalue in sorted_eigen_values]
+    hmm = [F(eigenvalue, n, 2) for eigenvalue in sorted_eigen_values]
     spacings.extend(np.diff(hmm))
-    # if r % 10_000 == 0:
-    print(r)
 
 mean = np.mean(spacings)
 normalized_spacings = list(map(lambda s: s / mean, spacings))
+print(mean)
 
-np.save(betas[beta][0] + " " + str(n) + "x" + str(n), normalized_spacings)
+# np.save(betas[beta][0] + " " + str(n) + "x" + str(n), normalized_spacings)
 
-plt.hist(normalized_spacings, bins=500, density=True)
+plt.hist(normalized_spacings, bins=30, density=True)
 x = np.arange(0, 5, 0.1)
 plt.plot(x, betas[beta][1](x), label=betas[beta][0])
 plt.legend()
