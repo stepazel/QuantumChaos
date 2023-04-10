@@ -11,3 +11,6 @@ def gue(x):
 
 def gse(x):
     return ((2**18)/(3**6 * pi**3)) * x**4 * (e ** ((-64/(9*pi)) * x**2))
+
+
+# TODO Poisson

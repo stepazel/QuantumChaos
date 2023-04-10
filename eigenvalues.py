@@ -20,8 +20,8 @@ if (beta not in [1, 2, 4]):
     print("A valid beta has to be selected!")
     exit()
 
-n = 100
-reps = 10_000
+n = 2
+reps = 100_000
 
 eigenvalues = []
 for r in range(reps):

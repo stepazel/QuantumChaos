@@ -21,28 +21,29 @@ if beta not in [1, 2, 4]:
     print("A valid beta has to be selected!")
     exit()
 
-n = 1001
-reps = 10
+n = 1000
+reps = 1000
 spacings = []
 for r in range(reps):
     matrix = GaussianEnsemble(beta=beta, n=n, use_tridiagonal=False).matrix
     sorted_eigen_values = np.sort(np.linalg.eigvalsh(matrix))
-    hmm = [F(eigenvalue, n, 2) for eigenvalue in sorted_eigen_values]
-    spacings.extend(np.diff(hmm))
+    unfolded_values = [F(eigenvalue, n, beta) for eigenvalue in sorted_eigen_values]
+    spacings.extend(np.diff(unfolded_values))
 
 mean = np.mean(spacings)
 normalized_spacings = list(map(lambda s: s / mean, spacings))
 print(mean)
 
-# np.save(betas[beta][0] + " " + str(n) + "x" + str(n), normalized_spacings)
+np.save(betas[beta][0] + " " + str(n) + "x1" + str(n), normalized_spacings)
+np.save(f"{betas[beta][0]}{n}x{n}", normalized_spacings)
 
-plt.hist(normalized_spacings, bins=30, density=True)
-x = np.arange(0, 5, 0.1)
+plt.hist(normalized_spacings, bins=200, density=True)
+x = np.arange(0, 5, 0.05)
 plt.plot(x, betas[beta][1](x), label=betas[beta][0])
 plt.legend()
 plt.xlabel("Normalized spacings of eigenvalues")
 plt.ylabel("Frequency")
 plt.xlim(xmin=0, xmax=5)
-plt.title("Histogram for " + betas[beta][0] + " " + str(n) + "x" + str(n))
-# plt.savefig(betas[beta][0] + str(n))
+plt.title(f'Histogram for {betas[beta][0]} matrix n={n}')
+plt.savefig(betas[beta][0])
 plt.show()
