@@ -1,16 +1,14 @@
 from sympy.parsing.mathematica import parse_mathematica
-from sympy import symbols
 import sympy
 from sympy import lambdify
 import numpy as np
-from find_roots import find_roots_in_interval, find_roots
+from find_roots import find_roots
+from concurrent.futures import ProcessPoolExecutor
 
 with open('det.txt', 'r') as file:
     content = file.read()
 
 expr_str = parse_mathematica(content)
-
-# expr_str = "sin(sqrt(2)*k)*sin(e*k)**3*sin(pi*k)**7*sin(e**3*k)*cos(0.5*k)"
 
 # Convert the string to a sympy expression
 expr = sympy.sympify(expr_str)
@@ -25,11 +23,10 @@ func = lambdify(k, subbed_expr, 'numpy')
 
 # Evaluate the function at a particular value of k and given values of E, pi, and e
 
-# roots = find_roots_in_interval(func, 10, 100, 'brentq')
-roots = find_roots(func, 100_000, 100)
-np.save(f"5complete_graph_roots{100_000}", roots)
-
-print(len(roots))
+if __name__ == '__main__':
+    with ProcessPoolExecutor(12) as exe:
+        roots = exe.find_roots(func, 100_000, 100)
+    np.save(f"5complete_graph_roots{100_000}", roots)
 
 
 

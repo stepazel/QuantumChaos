@@ -7,9 +7,9 @@ from plots import goe
 roots = np.load(f'dirichlet_standard_roots_{10_000_000}.npy')
 
 # normalize the values
-edge_lengts_sum = sum(edge_lengths)
+edge_lengths_sum = sum(edge_lengths)
 # have a normalize function for this
-normalized_roots = list(map(lambda root: (root * edge_lengts_sum) / np.pi, roots))
+normalized_roots = list(map(lambda root: (root * edge_lengths_sum) / np.pi, roots))
 sorted_normalized_roots = np.sort(normalized_roots)
 spacings = np.diff(sorted_normalized_roots)
 
@@ -21,5 +21,5 @@ plt.ylabel('Frequency')
 plt.xlim(xmin=0, xmax=5)
 plt.legend()
 plt.title('Histogram for a dirichlet-standard graph')
-plt.savefig('dirichlet_standard')
+plt.savefig('dirichlet_standard1')
 plt.show()

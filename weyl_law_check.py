@@ -1,29 +1,23 @@
-from dirichlet_standard.equations import dirichlet_standard
 from find_roots import find_roots_in_interval
 import math
 
-edge_lengths = [math.pi, math.e, math.sqrt(2), math.sqrt(3), math.sqrt(math.e), 1.2654]
-edge_lengths_sum = sum(edge_lengths)
 
+def check(func, edge_lengths_sum):
+    interval_size = 4000
+    roots1 = find_roots_in_interval(func, interval_size, 300)
+    # roots2 = find_roots_in_interval(func, interval_size * 2, 300)
+    # roots3 = find_roots_in_interval(func, interval_size * 3, 300)
+    # roots4 = find_roots_in_interval(func, interval_size * 4, 300)
+    # roots5 = find_roots_in_interval(func, interval_size * 5, 300)
 
-def func(x):
-    return dirichlet_standard(x, edge_lengths)
+    counts = [len(roots1)]#, len(roots2), len(roots3), len(roots4), len(roots5)]
 
+    print(f"{counts}")
+    diffs = []
+    i = 0
+    for count in counts:
+        x = (edge_lengths_sum / math.pi) * (interval_size + interval_size * i)
+        diffs.append(x - count)
+        i = i + 1
 
-roots1 = find_roots_in_interval(func, 12_000, 400)
-roots2 = find_roots_in_interval(func, 16_000, 400)
-roots3 = find_roots_in_interval(func, 20_000, 400)
-roots4 = find_roots_in_interval(func, 24_000, 400)
-roots5 = find_roots_in_interval(func, 28_000, 400)
-
-counts = [len(roots1), len(roots2), len(roots3), len(roots4), len(roots5)]
-
-print(f"{counts}")
-diffs = []
-i = 1
-for count in counts:
-    x = (edge_lengths_sum / math.pi) * (8000 + 4_000 * i)
-    diffs.append(x - count)
-    i = i + 1
-
-print(diffs)
+    print(diffs)

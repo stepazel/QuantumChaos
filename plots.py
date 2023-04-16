@@ -14,3 +14,10 @@ def gse(x):
 
 
 # TODO Poisson
+
+def poisson(x):
+    return e**(-x)
+
+
+def normalize_root(root: float, edge_lengths_sum: float) -> float:
+    return (root * edge_lengths_sum) / pi
