@@ -8,8 +8,8 @@ roots = np.load(f'dirichlet_standard_roots_{10_000_000}.npy')
 
 # normalize the values
 edge_lengths_sum = sum(edge_lengths)
-# have a normalize function for this
 normalized_roots = list(map(lambda root: (root * edge_lengths_sum) / np.pi, roots))
+# get spacings
 sorted_normalized_roots = np.sort(normalized_roots)
 spacings = np.diff(sorted_normalized_roots)
 
