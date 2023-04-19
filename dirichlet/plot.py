@@ -5,7 +5,7 @@ from plots import normalize_root
 from plots import poisson
 
 if __name__ == '__main__':
-    roots = np.load('roots.npy')
+    roots = np.load('roots1.npy')
 
     edge_lengths_sum = sum(e)
     normalized_roots = list(map(lambda root: normalize_root(root, edge_lengths_sum), roots))

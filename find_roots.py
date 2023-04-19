@@ -1,10 +1,9 @@
 from typing import Callable
 from scipy.optimize import root_scalar
 import time
-import gsl
+
 tol = 1e-8
 
-# rovnice bude soucit 6 sinu proste (vsude dirichlet)
 
 def find_roots_in_interval(func: Callable, interval_size: int, precision: int, method: str = 'brentq') -> list:
     roots = []
