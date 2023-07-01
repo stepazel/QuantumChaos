@@ -20,7 +20,7 @@ if (beta not in [1, 2, 4]):
     print("A valid beta has to be selected!")
     exit()
 
-n = 2
+n = 1000
 reps = 100_000
 
 eigenvalues = []
@@ -29,9 +29,10 @@ for r in range(reps):
     sorted_eigen_values = np.sort(np.linalg.eigvalsh(matrix))
     eigenvalues.extend(sorted_eigen_values)
     if r % 10_000 == 0:
-        print (r)
+        print(r)
 
 
+plt.title(f'{betas[beta]} n={n} eigenvalues')
 plt.hist(eigenvalues, bins=200, density=True)
-plt.savefig(betas[beta] + " eigenvalues")
+plt.savefig(f'{betas[beta]} n={n} eigenvalues')
 plt.show()

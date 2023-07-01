@@ -22,12 +22,12 @@ def F(eig, size, beta):
         return float(F_λ.subs(β, beta).subs(N, size).subs(λ, eig).evalf())
 
 
-matrix_size = 300
-A = GaussianEnsemble(beta=1, n=matrix_size).matrix
-λs, V = np.linalg.eigh(A)
-λ_bar = [F(eigenvalue, matrix_size, 1) for eigenvalue in λs]
-eig_spaces = [λ_bar[i+1] - λ_bar[i] for i in range(matrix_size-1)]
-print(np.mean(np.diff(λs)))
+# matrix_size = 300
+# A = GaussianEnsemble(beta=1, n=matrix_size).matrix
+# λs, V = np.linalg.eigh(A)
+# λ_bar = [F(eigenvalue, matrix_size, 1) for eigenvalue in λs]
+# eig_spaces = [λ_bar[i+1] - λ_bar[i] for i in range(matrix_size-1)]
+# print(np.mean(np.diff(λs)))
 
 
 

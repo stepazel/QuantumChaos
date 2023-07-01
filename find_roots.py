@@ -1,13 +1,13 @@
 from typing import Callable
 from scipy.optimize import root_scalar
+from scipy.optimize import fsolve
 import time
 
-tol = 1e-8
+tol = 1e-12
 
 
 def find_roots_in_interval(func: Callable, interval_size: int, precision: int, method: str = 'brentq') -> list:
     roots = []
-    i = 0
     tic = time.perf_counter()
 
     for i in range(interval_size * precision):
@@ -50,7 +50,7 @@ def find_roots(func: Callable, number_of_roots: int, precision=400) -> list:
             i += 1
             continue
         # find the root in the current interval
-        result = root_scalar(func, bracket=interval, xtol=tol, method='brentq')
+        result = root_scalar(func, bracket=interval, xtol=tol, method='bisect')
         # check if the root is not already in the list of roots and append it
         if abs(result.root) > tol and abs(result.root - interval[1]) > tol and abs(result.root - interval[0]) > tol:
             roots.append(result.root)
