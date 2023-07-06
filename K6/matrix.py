@@ -1,11 +1,11 @@
 import sympy as sp
 from sympy import cos, sin
-from numpy import pi, e, sqrt
+from numpy import pi, e, sqrt, log
 
 k, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 = sp.symbols('k l1 l2 l3 l4 l5 l6 l7 l8 l9 l10 l11 l12 l13 l14 l15', real=True)
 
-# TODO 15 delek hran. INspirovat se u jiz probehlych
-edge_lengths = [pi, e, sqrt(2), sqrt(3), sqrt(e), 1.2654, 0.5, sqrt(sqrt(2)), pi ** 2, e ** 3]
+edge_lengths = [pi, e, sqrt(2), log(2), 1.98712, sqrt(5), sqrt(e), log(5), sqrt(pi), 0.97127, sqrt(3), log(3), log(pi), 1.52321, 0.86127, log(7), sqrt(7), 2.31285]
+# edge_lengths = [pi, e, sqrt(2), sqrt(3), sqrt(e), 1.2654, 0.5, sqrt(sqrt(2)), pi ** 2, e ** 3]
 # TODO zkontrolovat (rucne a pomoci chat GPT)
 matrix = sp.Matrix([
     # A
