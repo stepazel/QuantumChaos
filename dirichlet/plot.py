@@ -7,7 +7,7 @@ from plots import poisson
 # e = [np.pi, np.e, np.sqrt(2), np.log(2), 1.98712, np.sqrt(5), np.sqrt(np.e), np.log(5), np.sqrt(np.pi), 0.97127]
 if __name__ == '__main__':
 
-    n = 3
+    n = 2
     roots = np.load(f'roots{n}.npy')
     # roots.
 
@@ -17,13 +17,13 @@ if __name__ == '__main__':
     spacings = np.diff(sorted_normalized_roots)
     test = np.sort(spacings)[::-1]
 
-    plt.hist(spacings, 150, density=True)
+    plt.hist(spacings, 400, density=True)
     x = np.arange(0, 8, 0.05)
     plt.plot(x, poisson(x), label='Poisson')
     plt.xlabel('Normalized nearest-neighbor spacings')
     plt.ylabel('Frequency')
     plt.xlim(xmin=0, xmax=8)
     plt.legend()
-    plt.title('Histogram for a Dirichlet star graph with one greater edge length')
+    plt.title('Histogram for a Dirichlet star graph ')
     plt.savefig(f'graph{n}')
     plt.show()

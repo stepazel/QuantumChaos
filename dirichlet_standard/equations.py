@@ -1,6 +1,8 @@
 import math
 
-edge_lengths = [math.pi, math.e, math.sqrt(2), math.sqrt(3), math.sqrt(math.e), 1.2654]
+
+# edge_lengths = [math.pi, math.e, math.sqrt(2), math.sqrt(3), math.sqrt(math.e), 1.2654]
+edge_lengths = [math.pi, math.e, math.sqrt(2), math.sqrt(3), math.sqrt(math.e), math.pi**3]
 
 
 def dirichlet_standard(k: float, a: list) -> object:
