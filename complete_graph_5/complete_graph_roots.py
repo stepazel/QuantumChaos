@@ -3,7 +3,6 @@ import sympy
 from sympy import lambdify
 import numpy as np
 from find_roots import find_roots
-from concurrent.futures import ProcessPoolExecutor
 
 with open('det.txt', 'r') as file:
     content = file.read()

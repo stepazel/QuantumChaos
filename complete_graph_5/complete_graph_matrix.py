@@ -4,6 +4,8 @@ from numpy import pi, e, sqrt
 
 k, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 = sp.symbols('k l1 l2 l3 l4 l5 l6 l7 l8 l9 l10', real=True)
 
+# TODO zkusit jine delky hran.. preci e^3 by tam asi nemelo byt
+
 edge_lengths = [pi, e, sqrt(2), sqrt(3), sqrt(e), 1.2654, 0.5, sqrt(sqrt(2)), pi ** 2, e ** 3]
 
 matrix = sp.Matrix([
