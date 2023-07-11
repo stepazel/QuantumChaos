@@ -2,8 +2,7 @@ from find_roots import find_roots_in_interval
 import math
 
 
-def check(func, edge_lengths_sum, method = 'brentq'):
-    interval_size = 4000
+def check(func, edge_lengths_sum, method='brentq', interval_size=4000):
     roots1 = find_roots_in_interval(func, interval_size, 400, method=method)
     roots2 = find_roots_in_interval(func, interval_size * 2, 400, method=method)
     roots3 = find_roots_in_interval(func, interval_size * 3, 400, method)

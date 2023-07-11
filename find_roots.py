@@ -21,6 +21,7 @@ def find_roots_in_interval(func: Callable, interval_size: int, precision: int, m
         # find the root in the current interval
         result = root_scalar(func, bracket=interval, xtol=tol, method=method)
         # check if the root is not already in the list of roots and append it
+        # what about finding singularity (a very large f(x))?
         if abs(result.root) > tol and abs(result.root - interval[1]) > tol and abs(result.root - interval[0]) > tol:
             roots.append(result.root)
         i += 1
@@ -36,7 +37,7 @@ def find_roots_in_interval(func: Callable, interval_size: int, precision: int, m
 # use analytical derivates??
 # use c library
 
-def find_roots(func: Callable, number_of_roots: int, precision=400) -> list:
+def find_roots(func: Callable, number_of_roots: int, precision=400, method: str = 'brentq') -> list:
     roots = []
     i = 0
     tic = time.perf_counter()
@@ -50,12 +51,12 @@ def find_roots(func: Callable, number_of_roots: int, precision=400) -> list:
             i += 1
             continue
         # find the root in the current interval
-        result = root_scalar(func, bracket=interval, xtol=tol, method='bisect')
+        result = root_scalar(func, bracket=interval, xtol=tol, method=method)
         # check if the root is not already in the list of roots and append it
         if abs(result.root) > tol and abs(result.root - interval[1]) > tol and abs(result.root - interval[0]) > tol:
             roots.append(result.root)
         i += 1
-        if len(roots) % (number_of_roots / 100) == 0:
+        if len(roots) % (number_of_roots / 100) == 0 and len(roots) != 0:
             print(f"{percentage}% completed")
             percentage += 1
     toc = time.perf_counter()
