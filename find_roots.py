@@ -1,12 +1,13 @@
 from typing import Callable
 from scipy.optimize import root_scalar
-from scipy.optimize import fsolve
 import time
 
 tol = 1e-12
 
 
-def find_roots_in_interval(func: Callable, interval_size: int, precision: int, method: str = 'brentq') -> list:
+def find_roots_in_interval(func: Callable, interval_size: int,
+                           precision: int,
+                           method: str = 'brentq') -> list:
     roots = []
     tic = time.perf_counter()
 
@@ -15,14 +16,14 @@ def find_roots_in_interval(func: Callable, interval_size: int, precision: int, m
         a = i / precision
         b = a + 1 / precision
         interval = [a, b]
+
         if func(a) * func(b) > 0:
             i += 1
             continue
-        # find the root in the current interval
-        result = root_scalar(func, bracket=interval, xtol=tol, method=method)
-        # check if the root is not already in the list of roots and append it
-        # what about finding singularity (a very large f(x))?
-        if abs(result.root) > tol and abs(result.root - interval[1]) > tol and abs(result.root - interval[0]) > tol:
+
+        result = root_scalar(func, bracket=interval, xtol=tol,
+                             method=method)
+        if result.converged and result.root not in roots:
             roots.append(result.root)
         i += 1
         if len(roots) % 10_000 == 0:
@@ -32,12 +33,8 @@ def find_roots_in_interval(func: Callable, interval_size: int, precision: int, m
     return roots
 
 
-# TODO try a more efficient algorithm
-# use paralellization
-# use analytical derivates??
-# use c library
-
-def find_roots(func: Callable, number_of_roots: int, precision=400, method: str = 'brentq') -> list:
+def find_roots(func: Callable, number_of_roots: int, precision=400,
+               method: str = 'brentq') -> list:
     roots = []
     i = 0
     tic = time.perf_counter()
@@ -47,16 +44,18 @@ def find_roots(func: Callable, number_of_roots: int, precision=400, method: str 
         a = i / precision
         b = a + 1 / precision
         interval = [a, b]
+
         if func(a) * func(b) > 0:
             i += 1
             continue
-        # find the root in the current interval
-        result = root_scalar(func, bracket=interval, xtol=tol, method=method)
-        # check if the root is not already in the list of roots and append it
-        if abs(result.root) > tol and abs(result.root - interval[1]) > tol and abs(result.root - interval[0]) > tol:
+
+        result = root_scalar(func, bracket=interval, xtol=tol,
+                             method=method)
+        if result.converged and result.root not in roots:
             roots.append(result.root)
         i += 1
-        if len(roots) % (number_of_roots / 100) == 0 and len(roots) != 0:
+        if len(roots) % (number_of_roots / 100) == 0 and len(
+                roots) != 0:
             print(f"{percentage}% completed")
             percentage += 1
     toc = time.perf_counter()

@@ -10,8 +10,6 @@ e = [np.pi, np.e, np.sqrt(2), np.log(2), 1.98712, np.sqrt(5), np.sqrt(np.e), np.
 # e = [1, 2, 3, 4, 5, 6] # rationally dependent edge lengths
 
 
-# TODO
-#  complete graph - hele zkusit ty hrany taky nejak podobne + weylova asymptotika
 
 def func(k: float) -> float:
     return sin(e[0] * k) \

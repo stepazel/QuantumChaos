@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from equations import edge_lengths
-from plots import goe
+from distributions import goe
 
 
 roots = np.load(f'dirichlet_standard_roots_{100_000}.npy')

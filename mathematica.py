@@ -7,14 +7,15 @@ from numpy import pi, e
 
 
 def convert_to_mathematica_matrix(matrix: Matrix) -> str:
-    """ Converts sympy matrix into a string that can be pasted into Mathematica input. """
+    """ Converts sympy matrix into a string that can be
+     pasted into Mathematica input. """
     matrix_str = str(matrix.tolist())
     return matrix_str \
-        .replace('[', '{')\
-        .replace(']', '}')\
-        .replace('cos', 'Cos')\
-        .replace('sin', 'Sin')\
-        .replace('(', '[')\
+        .replace('[', '{') \
+        .replace(']', '}') \
+        .replace('cos', 'Cos') \
+        .replace('sin', 'Sin') \
+        .replace('(', '[') \
         .replace(')', ']')
 
 
@@ -29,10 +30,8 @@ def get_func_from_mathematica(file_name: str):
 
     # Define the variables
     k = Symbol('k')
-    # pi = Symbol('pi')
-    # e = Symbol('e')
-    # Use lambdify to create a function that can be evaluated numerically
+    # Use lambdify to create a function
+    # that can be evaluated numerically
     subbed_expr = expr.subs({'pi': pi, 'e': e})
     func = lambdify(k, subbed_expr, 'numpy')
     return func
-

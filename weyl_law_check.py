@@ -3,11 +3,11 @@ import math
 
 
 def check(func, edge_lengths_sum, method='brentq', interval_size=4000):
-    roots1 = find_roots_in_interval(func, interval_size, 400, method=method)
-    roots2 = find_roots_in_interval(func, interval_size * 2, 400, method=method)
+    roots1 = find_roots_in_interval(func, interval_size * 1, 400, method)
+    roots2 = find_roots_in_interval(func, interval_size * 2, 400, method)
     roots3 = find_roots_in_interval(func, interval_size * 3, 400, method)
     roots4 = find_roots_in_interval(func, interval_size * 4, 400, method)
-    roots5 = find_roots_in_interval(func, interval_size * 5, 400)
+    roots5 = find_roots_in_interval(func, interval_size * 5, 400, method)
 
     counts = [len(roots1), len(roots2), len(roots3), len(roots4), len(roots5)]
 

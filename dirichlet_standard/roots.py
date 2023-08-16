@@ -1,4 +1,3 @@
-import math
 from find_roots import find_roots
 from equations import dirichlet_standard, edge_lengths
 from numpy import save

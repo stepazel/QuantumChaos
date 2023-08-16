@@ -6,12 +6,21 @@ from mathematica import get_func_from_mathematica
 # weyl's law : 93775 for this interval
 
 
+# bisection, ending 211, 2000 roots
+
+# 1001 roots, ending 106
+
 func = get_func_from_mathematica('det_k5.txt')
 
+def normalized_func(x):
+    original_value = func(x)
+
+    return original_value * 10e69
+
 if __name__ == '__main__':
-    num = 10000
-    roots = find_roots(func, num, 200)
-    np.save(f"5complete_graph_roots{num}", roots)
+    num = 499
+    roots = find_roots(func, num, 400, method='brentq')
+    np.save(f"K5roots{num}", roots)
 
 
 
